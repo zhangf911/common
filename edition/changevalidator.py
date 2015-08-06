@@ -1,7 +1,6 @@
-from biicode.common.exception import BiiException
 from biicode.common.conf import MEGABYTE
 from biicode.common.conf import (BII_FILE_SIZE_LIMIT, BII_MAX_BLOCK_SIZE,
-                                 BII_BLOCK_NUMFILES_LIMIT, BII_HIVE_NUMFILES_LIMIT)
+                                 BII_BLOCK_NUMFILES_LIMIT)
 
 
 def text_for_megabytes(bytes_amount):
@@ -25,16 +24,10 @@ def remove_large_cells(files, biiout):
             del files[name]
 
 
-def check_hive_num_cells(hive):
-    if len(hive.cells) > BII_HIVE_NUMFILES_LIMIT:
-        raise BiiException("The number of resources is bigger than %d. Cannot process"
-                           % BII_HIVE_NUMFILES_LIMIT)
-
-
 def check_block_size(block_holder, biiout):
     """Check num of files and the block size reading size of files on filesystem
     Params:
-        hive_holder: HiveHolder
+        hive_holder: ProjectHolder
         block: BlockName
         biiout: biiout
     """
